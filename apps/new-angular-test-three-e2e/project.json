@@ -1,0 +1,29 @@
+{
+  "name": "new-angular-test-three-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/new-angular-test-three-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/new-angular-test-three-e2e/cypress.json",
+        "devServerTarget": "new-angular-test-three:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "new-angular-test-three:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/new-angular-test-three-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["new-angular-test-three"]
+}

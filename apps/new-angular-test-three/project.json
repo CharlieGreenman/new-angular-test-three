@@ -1,0 +1,95 @@
+{
+  "name": "new-angular-test-three",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/new-angular-test-three/src",
+  "prefix": "new-angular-test-three",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/new-angular-test-three",
+        "index": "apps/new-angular-test-three/src/index.html",
+        "main": "apps/new-angular-test-three/src/main.ts",
+        "polyfills": "apps/new-angular-test-three/src/polyfills.ts",
+        "tsConfig": "apps/new-angular-test-three/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/new-angular-test-three/src/favicon.ico",
+          "apps/new-angular-test-three/src/assets"
+        ],
+        "styles": ["apps/new-angular-test-three/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/new-angular-test-three/src/environments/environment.ts",
+              "with": "apps/new-angular-test-three/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "new-angular-test-three:build:production"
+        },
+        "development": {
+          "browserTarget": "new-angular-test-three:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "razroo-angular-starter:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/razroo-angular-starter/src/**/*.ts",
+          "apps/razroo-angular-starter/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/razroo-angular-starter"],
+      "options": {
+        "jestConfig": "apps/razroo-angular-starter/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
